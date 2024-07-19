@@ -32,7 +32,7 @@ const Requests = ({navigation}) => {
 			params.append("endDate", moment(lastDate).format("YYYY-MM-DD"))
 		}
 		console.log("Params:: " + params);
-		fetch(`http://localhost:8080/requests/findByStatusAndDates?${params}`, {
+		fetch(`http://192.168.1.7:8080/requests/findByStatusAndDates?${params}`, {
 			method: 'GET', headers: {
 				'Content-Type': 'application/json',
 			},
