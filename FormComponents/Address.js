@@ -172,7 +172,7 @@ const Address = ({ navigation }) => {
 
 				<View style={styles.textInSubView}>
 					<View style={styles.label}>
-						<label>Country</label>
+						<Text>Country</Text>
 					</View>
 					{(isNew || enable) ?
 						<View>
@@ -262,7 +262,7 @@ const Address = ({ navigation }) => {
 								}
 							}}
 							/>
-							{errors.address?.city_id?.message && <Text> {errors.address?.city_id?.message}</Text>}
+							{errors.address?.city_id?.message && <Text>{errors.address?.city_id?.message}</Text>}
 						</View>
 						: <View>
 							<Text style={styles.label}>
@@ -279,7 +279,7 @@ const Address = ({ navigation }) => {
 					{(isNew || enable) ?
 						<View>
 							<Controller control={control} name={'address.pincode'} defaultValue={''} render={({ field: { value, onChange } }) => (
-								<TextInput value={value} onChangeText={onChange} style={styles.textInput} maxLength='6' />
+								<TextInput value={value} onChangeText={onChange} style={styles.textInput} maxLength= {6} />
 							)}
 								rules={{
 									required: {
@@ -308,7 +308,7 @@ const Address = ({ navigation }) => {
 						<Pressable onPress={handleSubmit(handlePress)} style={styles.button} ><Text>Submit</Text></Pressable>
 						: (enable &&
 							(<View style={{ flexDirection: 'row', columnGap: "10px" }}>
-								<Pressable onPress={handleSubmit(handleUpdate)} style={styles.button}><Text>Save</Text> </Pressable>
+								<Pressable onPress={handleSubmit(handleUpdate)} style={styles.button}><Text>Save</Text></Pressable>
 								<Pressable onPress={handleSubmit(handleCancel)} style={styles.button}><Text>Cancel</Text></Pressable>
 							</View>
 							)

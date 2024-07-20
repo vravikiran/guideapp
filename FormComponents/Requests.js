@@ -70,14 +70,13 @@ const Requests = ({navigation}) => {
 				<Text>Requests For {state.first_name} {state.last_name}</Text>
 				<View style={styles.textInSubView}>
 					<Text style={{ alignItems: 'flex-start', width: "80px" }}>Status</Text>
-					<View style={{ width: "120px" }}>
+					<View style={{ width: "25%" }}>
 						<Dropdown
 							labelField={"label"}
 							data={statuses}
 							valueField={"value"}
 							value={status}
 							onChange={item => { setStatus(item.value) }}
-							//containerStyle={{ width: "120px" }}
 							placeholder="Select status"
 						/>
 					</View>

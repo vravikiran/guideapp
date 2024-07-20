@@ -121,7 +121,7 @@ const LoginScreen = ({ navigation }) => {
 	return (
 		<View style={styles.compView}>
 			<Text>Enter mobile Number</Text>
-			<TextInput inputmode='numeric' placeholder="Enter Mobile Number" style={{ width: "20%", borderRadius: 5, borderWidth: 1 }}
+			<TextInput inputmode='numeric' placeholder="Enter Mobile Number" style={{ width: "25%", borderRadius: 5, borderWidth: 1 }}
 				onChangeText={handleChange}
 				maxLength={10} value={mobileNo}
 				keyBoardType='numeric'
@@ -130,7 +130,7 @@ const LoginScreen = ({ navigation }) => {
 				isStatus ? (
 					<>
 						<Text>Enter OTP</Text>
-						<TextInput style={{ width: "20%", borderRadius: 5, borderWidth: 1 }} value={otp} onChangeText={handleOtp} maxLength={4} />
+						<TextInput style={{ width: "25%", borderRadius: 5, borderWidth: 1 }} value={otp} onChangeText={handleOtp} maxLength={4} />
 						<Pressable title="Validate" onPress={validateOtp} style={styles.button}><Text>Validate OTP</Text></Pressable>
 						{hasError ? <Text style={{ width: "150px", alignConent: 'flex-end' }}>{'Entered otp is invalid'}</Text> : null}
 						{Object.values(errors).map((error, index) => (
