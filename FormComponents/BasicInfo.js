@@ -226,7 +226,7 @@ const BasicInfo = ({ navigation, route }) => {
 									<Text style={{ width: "35%" }}>Aadhar Number</Text>
 									<View style={{ width: "55%" }}>
 										<Controller name={'aadhar_number'} control={control} defaultValue={state.aadhar_number} render={({ field: { value, onChange } }) => (
-											<TextInput value={value} onChangeText={onChange} style={{ borderWidth: 1, borderRadius: 5 }} />
+											<TextInput value={value}  onChangeText={onChange} style={{ borderWidth: 1, borderRadius: 5 }} maxLength={12}/>
 										)} rules={{
 											required: {
 												value: true,
