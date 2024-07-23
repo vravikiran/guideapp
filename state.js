@@ -45,7 +45,7 @@ export const AppProvider = ({ children }) => {
 	useEffect(
 		() => {
 			const info = []
-			fetch('http://localhost:8080/locations/countries')
+			fetch('http://192.168.1.7:8080/locations/countries')
 				.then(response => response.json())
 				.then(data => {
 					data.map(item => {

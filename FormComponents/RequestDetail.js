@@ -34,47 +34,52 @@ const RequestDetail = ({ navigation, route }) => {
 	}
 	return (
 		<>
-			<View style={styles.compView}>
-				<Text><b>Request Details</b></Text>
-				<View style={styles.textInSubView}>
-					<label>Traveller Name:</label>
-					<Text>{detail.traveller_name} </Text>
+			<View View style={{
+							backgroundColor: "#ffc2c2",
+							rowGap: 10,
+							flexDirection: 'column'
+						}}>
+				<Text>Request Details</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>Traveller Name:</Text>
+					<Text style={{ width: "55%" }}>{detail.traveller_name} </Text>
 				</View>
-				<View style={styles.textInSubView}>
-					<label>Start Date:</label>
-					<Text>{detail.start_date}</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>Start Date:</Text>
+					<Text style={{ width: "55%" }}>{detail.start_date}</Text>
 				</View>
-				<View style={styles.textInSubView}>
-					<label>End Date:</label>
-					<Text>{detail.end_date}</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>End Date:</Text>
+					<Text style={{ width: "55%" }}>{detail.end_date}</Text>
 				</View>
-				<View style={styles.textInSubView}>
-					<label>Number Of Persons:</label>
-					<Text>{detail.no_of_persons}</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>Number Of Persons:</Text>
+					<Text style={{ width: "55%" }}>{detail.no_of_persons}</Text>
 				</View>
-				<View style={styles.textInSubView}>
-					<label>Accomodation:</label>
-					<Text>{detail.is_room_available ? "Required" : "Not Required"}</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>Accomodation:</Text>
+					<Text style={{ width: "55%" }}>{detail.is_room_available ? "Required" : "Not Required"}</Text>
 				</View>
-				<View style={styles.textInSubView}>
-					<label>Vehicle:</label>
-					<Text>{detail.is_vehicle_required ? "Required" : "Not Required"}</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>Vehicle:</Text>
+					<Text style={{ width: "55%" }}>{detail.is_vehicle_required ? "Required" : "Not Required"}</Text>
 				</View>
-				<View style={styles.textInSubView}>
-					<label>Food:</label>
-					<Text>{detail.is_food_required ? "Required" : "Not Required"}</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>Food:</Text>
+					<Text style={{ width: "55%" }}>{detail.is_food_required ? "Required" : "Not Required"}</Text>
 				</View>
-				<View style={styles.textInSubView}>
-					<label>Plan Type</label>
-					<Text>{detail.plan_type}</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>Plan Type</Text>
+					<Text style={{ width: "55%" }}>{detail.plan_type}</Text>
 				</View>
-				<View style={styles.textInSubView}>
-					<label>Places</label>
-					<Text>{detail.places}</Text>
+				<View style={{ flexDirection: 'row', alignItems: 'center', cloumnGap: 10 }}>
+					<Text style={{ width: "35%" }}>Places</Text>
+					<Text style={{ width: "55%" }}>{detail.places}</Text>
 				</View>
-				<View style={{flex:1,flexDirection:'row',columnGap:'10px', height:'100px'}}>
+				<View style={{ flexDirection: 'row', alignItems: 'center', columnGap: 10 }}>
 				<Pressable onPress={handleAccept} style={styles.button}><Text>Accept</Text></Pressable>
 				<Pressable onPress={handleReject} style={styles.button}><Text>Decline</Text></Pressable>
+				<Pressable onPress={()=>navigation.goBack()} style={styles.button}><Text>Back</Text></Pressable>
 				</View>
 			</View>
 		</>

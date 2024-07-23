@@ -52,8 +52,6 @@ const Requests = ({navigation}) => {
 		setOpen(true)
 	}
 	const onConfirm = ({ startDate, endDate }) => {
-		console.log(startDate)
-		console.log(endDate)
 		setBeginDate(startDate)
 		setLastDate(endDate)
 	}
@@ -70,7 +68,7 @@ const Requests = ({navigation}) => {
 				<Text>Requests For {state.first_name} {state.last_name}</Text>
 				<View style={styles.textInSubView}>
 					<Text style={{ alignItems: 'flex-start', width: "80px" }}>Status</Text>
-					<View style={{ width: "25%" }}>
+					<View style={{ width: "50%" }}>
 						<Dropdown
 							labelField={"label"}
 							data={statuses}
@@ -78,6 +76,9 @@ const Requests = ({navigation}) => {
 							value={status}
 							onChange={item => { setStatus(item.value) }}
 							placeholder="Select status"
+							containerStyle={{ width: "150px" }}
+							style={{ width: "150px" }}
+							closeModalWhenSelectedItem={true}
 						/>
 					</View>
 				</View>
@@ -110,8 +111,8 @@ const Requests = ({navigation}) => {
 					}}><Text>Search</Text></Pressable>
 					<Pressable onPress={handleReset} style={styles.button}><Text>Reset</Text></Pressable>
 				</View>
-				<View style={{width:"30%"}}>
-				{result.length != 0 && <ListOfRequests list={result} navigation={navigation}/>}
+				<View style={{width:"100%"}}>
+				{result.length != 0 ? <ListOfRequests list={result} navigation={navigation}/>:<Text>No requests to display</Text>}
 				</View>
 			</View>
 	)

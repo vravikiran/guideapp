@@ -12,23 +12,23 @@ const ListOfRequests = ({ list,navigation }) => {
 	}
 	const listOfItems = list.map(item =>
 		<>
-			<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+			<View style={{ flexDirection: 'row', alignItems: 'center'}}>
 				<RadioButton value={item.id} />
-				<Text style={{ flex: 1 }}>{item.traveller_name}</Text>
-				<Text style={{ flex: 1 }}>{item.start_date} </Text>
-				<Text style={{ flex: 1 }}>{item.end_date}</Text>
+				<Text style={{position:'absolute',left:"25%"}}>{item.traveller_name}</Text>
+				<Text style={{position:'absolute',left:"55%"}}>{item.start_date} </Text>
+				<Text style={{position:'absolute',left:"86%"}}>{item.end_date}</Text>
 			</View>
 		</>
 	)
 	return (
 
-		<View style={{flex:1}}>
+		<View>
 			<RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
-				<View>
+				<View style={{rowGap:10}}>
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-						<Text style={{ flex: 1 }}>Traveller Name</Text>
-						<Text style={{ flex: 1 }}>Start Date</Text>
-						<Text style={{ flex: 1 }}>End Date</Text>
+						<Text style={{position:'absolute',left:"25%"}}>Traveller Name</Text>
+						<Text style={{position:'absolute',left:"55%"}}>Start Date</Text>
+						<Text style={{position:'absolute',left:"86%"}}>End Date</Text>
 					</View>
 					{listOfItems}
 				</View>
