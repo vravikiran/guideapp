@@ -77,7 +77,7 @@ const Address = ({ navigation }) => {
 		const params = new URLSearchParams({
 			'state_id': item
 		});
-		fetch(`http://192.168.1.7:8080/locations?${params}`, {
+		fetch(`http://192.168.1.7:8080/locations/state?${params}`, {
 			method: 'GET', headers: {
 				'Content-Type': 'application/json',
 			},
