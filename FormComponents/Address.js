@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Pressable, TextInput, View, Text } from "react-native";
 import { IconButton } from 'react-native-paper'
 import { Dropdown } from "react-native-element-dropdown";
-
+import { BASE_URL } from '@env';
 const Address = ({ navigation }) => {
 	const { state, setState, styles, isNew, setIsNew, countries } = useAppState();
 	const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues: state });
@@ -17,7 +17,7 @@ const Address = ({ navigation }) => {
 		data.address.state = states[data.address.state_id - 1].label
 		data.address.country = countries[data.address.country_id - 1].label
 		setState({ ...state, ...data })
-		fetch('http://192.168.1.7:8080/user', {
+		fetch(`${BASE_URL}/user`, {
 			method: "POST",
 			body: JSON.stringify(data),
 			headers: {
@@ -28,11 +28,8 @@ const Address = ({ navigation }) => {
 				return response.json()
 			}
 		}).then((response) => {
-			console.log('in response')
 			setIsNew(false)
 			data.address.address_id = response.address.address_id;
-			console.log("state in create method",JSON.stringify(state))
-			console.log("data in create method",JSON.stringify(data))
 			navigation.navigate('RequestsInfo')
 			console.log("User created successfully")
 		})
@@ -40,9 +37,6 @@ const Address = ({ navigation }) => {
 
 	useEffect(
 		() => {
-			console.log(JSON.stringify(state))
-			console.log(JSON.stringify(states))
-			console.log(JSON.stringify(locations))
 			if (!isNew) {
 				handleCountryChange(state.address.country_id)
 				handleStateChange(state.address.state_id)
@@ -51,11 +45,10 @@ const Address = ({ navigation }) => {
 	)
 
 	const handleCountryChange = (item) => {
-		console.log(JSON.stringify(item))
 		const params = new URLSearchParams({
 			'country_id': item
 		});
-		fetch(`http://192.168.1.7:8080/locations/statesByCountry?${params}`, {
+		fetch(`${BASE_URL}/locations/statesByCountry?${params}`, {
 			method: 'GET', headers: {
 				'Content-Type': 'application/json',
 			},
@@ -73,11 +66,10 @@ const Address = ({ navigation }) => {
 	}
 
 	const handleStateChange = (item) => {
-		console.log("state", item)
 		const params = new URLSearchParams({
 			'state_id': item
 		});
-		fetch(`http://192.168.1.7:8080/locations/state?${params}`, {
+		fetch(`${BASE_URL}/locations/state?${params}`, {
 			method: 'GET', headers: {
 				'Content-Type': 'application/json',
 			},
@@ -107,7 +99,7 @@ const Address = ({ navigation }) => {
 		data.address.city = locations[data.address.city_id - 1].label
 		data.address.state = states[data.address.state_id - 1].label
 		data.address.country = countries[data.address.country_id - 1].label
-		fetch('http://192.168.1.7:8080/address', {
+		fetch(`${BASE_URL}/address`, {
 			method: "PUT",
 			body: JSON.stringify(data.address),
 			headers: {

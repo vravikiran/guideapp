@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper'
 import * as ImagePicker from 'expo-image-picker'
+import {BASE_URL} from '@env';
 
 const BasicInfo = ({ navigation, route }) => {
 	const { state, setState, styles, isNew } = useAppState();
@@ -19,9 +20,8 @@ const BasicInfo = ({ navigation, route }) => {
 	}
 
 	const handleUpdate = (data) => {
-		console.log(JSON.stringify(data))
 		setState(data)
-		fetch('http://192.168.1.7:8080/user', {
+		fetch(`${BASE_URL}/user`, {
 			method: "PATCH",
 			body: JSON.stringify(data),
 			headers: {
@@ -54,7 +54,7 @@ const BasicInfo = ({ navigation, route }) => {
 		} else {
 			if (Platform.OS === 'web') {
 				setImageSource(result.assets[0].uri)
-				fetch("http://192.168.1.7:8080/user/upload", {
+				fetch(`${BASE_URL}/user/upload`, {
 					method: "POST",
 					body: result.assets[0].uri
 				}).then(response => {
@@ -73,7 +73,7 @@ const BasicInfo = ({ navigation, route }) => {
 					name:result.assets[0].fileName,
 					type:result.assets[0].mimeType
 				});
-				fetch('http://192.168.1.7:8080/user/uploadFromMobile', {
+				fetch(`${BASE_URL}/user/uploadFromMobile`, {
 					method: "POST",
 					body: formData,
 					headers:{

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, TextInput, Pressable, Text } from 'react-native';
 import { useAppState } from "./state";
+import {BASE_URL} from '@env';
+
 const LoginScreen = ({ navigation }) => {
 	const [mobileNo, setMobileNo] = useState('');
 	const [isStatus, setIsStatus] = useState(false);
@@ -60,7 +62,7 @@ const LoginScreen = ({ navigation }) => {
 			'mobileNo': mobileNo
 		});
 		if (isFormValid) {
-			fetch(`http://192.168.1.7:8080/auth/generateOtp?${params}`, {
+			fetch(`${BASE_URL}/auth/generateOtp?${params}`, {
 				method: 'GET', headers: {
 					'Content-Type': 'application/json',
 				},
@@ -82,7 +84,7 @@ const LoginScreen = ({ navigation }) => {
 		var respStatus = 0;
 		if (isFormValid) {
 			const result = async () => {
-				var user = await fetch("http://192.168.1.7:8080/auth/validateOtp", {
+				var user = await fetch(`${BASE_URL}/auth/validateOtp`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({ mobileNo: mobileNo, otp: otp })

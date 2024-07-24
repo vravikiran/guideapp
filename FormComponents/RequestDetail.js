@@ -1,11 +1,13 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { useAppState } from "../state";
+import {BASE_URL} from '@env'
+
 const RequestDetail = ({ navigation, route }) => {
 	const { styles } = useAppState();
 	const detail = route.params.details;
 	const handleAccept = () => {
-	fetch(`http://localhost:8080/requests/update/${detail.id}`, {
+	fetch(`${BASE_URL}/requests/update/${detail.id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'
@@ -19,7 +21,7 @@ const RequestDetail = ({ navigation, route }) => {
 		})
 	}
 	const handleReject = () => {
-		fetch(`http://localhost:8080/requests/update/${detail.id}`, {
+		fetch(`${BASE_URL}/requests/update/${detail.id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
+import {BASE_URL} from "@env";
 
 const AppStateContext = createContext({});
 export const AppProvider = ({ children }) => {
@@ -45,7 +46,7 @@ export const AppProvider = ({ children }) => {
 	useEffect(
 		() => {
 			const info = []
-			fetch('http://192.168.1.7:8080/locations/countries')
+			fetch(`${BASE_URL}/locations/countries`)
 				.then(response => response.json())
 				.then(data => {
 					data.map(item => {

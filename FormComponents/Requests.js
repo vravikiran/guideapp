@@ -7,6 +7,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { DatePickerModal } from "react-native-paper-dates";
 import moment from "moment/moment";
 import ListOfRequests from "./ListOfRequests";
+import {BASE_URL} from '@env';
+
 const Requests = ({navigation}) => {
 	const { styles,state } = useAppState();
 	const params = new URLSearchParams({});
@@ -32,7 +34,7 @@ const Requests = ({navigation}) => {
 			params.append("endDate", moment(lastDate).format("YYYY-MM-DD"))
 		}
 		console.log("Params:: " + params);
-		fetch(`http://192.168.1.7:8080/requests/findByStatusAndDates?${params}`, {
+		fetch(`${BASE_URL}/requests/findByStatusAndDates?${params}`, {
 			method: 'GET', headers: {
 				'Content-Type': 'application/json',
 			},
