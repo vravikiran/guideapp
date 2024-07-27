@@ -8,6 +8,7 @@ import Requests from "./FormComponents/Requests";
 import { DrawerContentScrollView, DrawerItem, DrawerItemList, createDrawerNavigator } from "@react-navigation/drawer";
 import RequestDetail from "./FormComponents/RequestDetail";
 import { CommonActions } from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const logoutDrawerContent = (props) => {
@@ -41,11 +42,13 @@ const MainApp = () => {
 
 const RequestSearch = () => {
 	return (
-		<Drawer.Navigator initialRouteName="Requests" drawerContent={(props) => logoutDrawerContent({ ...props })}>
-			<Drawer.Screen name="Requests" component={Requests} />
-			<Drawer.Screen name="profile" component={BasicInfo} />
-			<Drawer.Screen name="Guide Address" component={Address} />
-		</Drawer.Navigator>
+		<SafeAreaProvider>
+			<Drawer.Navigator initialRouteName="Requests" drawerContent={(props) => logoutDrawerContent({ ...props })}>
+				<Drawer.Screen name="Requests" component={Requests} />
+				<Drawer.Screen name="profile" component={BasicInfo} />
+				<Drawer.Screen name="Guide Address" component={Address} />
+			</Drawer.Navigator>
+		</SafeAreaProvider>
 	)
 }
 export default MainApp;

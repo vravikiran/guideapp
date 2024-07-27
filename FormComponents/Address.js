@@ -7,7 +7,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import { BASE_URL } from '@env';
 const Address = ({ navigation }) => {
 	const { state, setState, styles, isNew, setIsNew, countries } = useAppState();
-	const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues: state });
+	const { control, handleSubmit, formState: { errors }, getValues } = useForm({ defaultValues: state });
 	const [enable, setEnable] = useState(false)
 	const [states, setStates] = useState([])
 	const [locations, setLocations] = useState([]);
@@ -36,6 +36,7 @@ const Address = ({ navigation }) => {
 	}
 
 	useEffect(
+
 		() => {
 			if (!isNew) {
 				handleCountryChange(state.address.country_id)
@@ -45,6 +46,16 @@ const Address = ({ navigation }) => {
 	)
 
 	const handleCountryChange = (item) => {
+		if (!isNew && state.address.country_id != getValues("address.country_id")) {
+			setState({
+				...state,
+				address: {
+					...state.address,
+					state_id: '',
+					city_id: ''
+				}
+			})
+		}
 		const params = new URLSearchParams({
 			'country_id': item
 		});
@@ -66,10 +77,21 @@ const Address = ({ navigation }) => {
 	}
 
 	const handleStateChange = (item) => {
+		const country_id = getValues("address.country_id")
+		if (!isNew && state.address.state_id != getValues("address.state_id")) {
+			setState({
+				...state,
+				address: {
+					...state.address,
+					city_id: ''
+				}
+			})
+		}
 		const params = new URLSearchParams({
-			'state_id': item
+			'state_id': item,
+			'country_id': country_id
 		});
-		fetch(`${BASE_URL}/locations/state?${params}`, {
+		fetch(`${BASE_URL}/locations/country/state?${params}`, {
 			method: 'GET', headers: {
 				'Content-Type': 'application/json',
 			},
@@ -82,6 +104,7 @@ const Address = ({ navigation }) => {
 			data.map(item => {
 				info.push({ "label": item.location, "value": item.location_id })
 			})
+			console.log(JSON.stringify(info));
 			setLocations(info)
 		})
 	}
